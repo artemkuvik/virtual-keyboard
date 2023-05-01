@@ -72,12 +72,20 @@ row_2.style.display = "flex";
 row_2.style.justifyContent = "space-between";
 row_2.style.marginBottom = "8px";
 
-const ROW_2_ARR = ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\/" , "Del"];
-const ROW_2_ARR_CHAR = [9, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220, 46]
 
+const ROW_2_ARR = ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\/" , "Del"];
+const ROW_2_ARR_CHAR = [9, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220, 46];
+const ROW_2_ARR_RUS = ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\/" , "Del"];
+
+if (localStorage.getItem("lang") == 1) {
 for (let i = 0; i < 15; i++) {
+    row_2.append(createStandartKey(ROW_2_ARR_RUS[i], ROW_2_ARR_CHAR[i]));
+}
+}
+else for (let i = 0; i < 15; i++) {
     row_2.append(createStandartKey(ROW_2_ARR[i], ROW_2_ARR_CHAR[i]));
 }
+
 
 row_2.firstElementChild.style.width = "50px";
 row_2.firstElementChild.style.backgroundColor = "black";
@@ -94,9 +102,15 @@ row_3.style.justifyContent = "space-between";
 row_3.style.marginBottom = "8px";
 
 const ROW_3_ARR = ["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "Enter"];
-const ROW_3_ARR_CHAR = [20, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 13]
+const ROW_3_ARR_CHAR = [20, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 13];
+const ROW_3_ARR_RUS = ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "Enter"];
 
+if (localStorage.getItem("lang") == 1) {
 for (let i = 0; i < 13; i++) {
+    row_3.append(createStandartKey(ROW_3_ARR_RUS[i], ROW_3_ARR_CHAR[i]));
+}
+}
+else for (let i = 0; i < 13; i++) {
     row_3.append(createStandartKey(ROW_3_ARR[i], ROW_3_ARR_CHAR[i]));
 }
 
@@ -115,8 +129,14 @@ row_4.style.marginBottom = "8px";
 
 const ROW_4_ARR = ["Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "▲", "Shift"];
 const ROW_4_ARR_CHAR = [16, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191, 38, "ShiftRight"];
+const ROW_4_ARR_RUS = ["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", "/", "▲", "Shift"];
 
+if (localStorage.getItem("lang") == 1) {
 for (let i = 0; i < 13; i++) {
+    row_4.append(createStandartKey(ROW_4_ARR_RUS[i],ROW_4_ARR_CHAR[i]));
+}
+}
+else for (let i = 0; i < 13; i++) {
     row_4.append(createStandartKey(ROW_4_ARR[i],ROW_4_ARR_CHAR[i]));
 }
 
@@ -195,16 +215,13 @@ keyboard.onmouseup = function(event) {
     }
 }
 
-const ROW_2_ARR_RUS = ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\/" , "Del"];
-const ROW_3_ARR_RUS = ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "Enter"];
-const ROW_4_ARR_RUS = ["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", "/", "▲", "Shift"]
+
 let keyActive;
-let lang = 0;
 document.onkeydown = function(event) {
     event.preventDefault();
     keyActive = document.getElementById(event.keyCode);
     let value = keyActive.innerHTML;
-    if(event.keyCode === 18 && lang === 0) {
+    if(event.keyCode === 18 && localStorage.getItem("lang") == 0) {
         row_2.innerHTML = "";
         row_3.innerHTML = "";
         row_4.innerHTML = ""
@@ -241,9 +258,9 @@ document.onkeydown = function(event) {
         row_4.firstElementChild.classList.add("black");
         row_4.lastElementChild.style.width = "86px";
 
-        lang = 1;
+        localStorage.setItem('lang', 1);
         }
-        else if(event.keyCode === 18 && lang === 1) {
+        else if(event.keyCode === 18 && localStorage.getItem("lang") == 1) {
         row_2.innerHTML = "";
         row_3.innerHTML = "";
         row_4.innerHTML = ""
@@ -279,8 +296,7 @@ document.onkeydown = function(event) {
         row_4.lastElementChild.classList.add("black");
         row_4.firstElementChild.classList.add("black");
         row_4.lastElementChild.style.width = "86px";
-
-        lang = 0;
+        localStorage.setItem('lang', 0);
     }
 
     if (event.code === "ShiftRight") {
