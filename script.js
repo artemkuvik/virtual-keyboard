@@ -136,7 +136,7 @@ row_5.style.display = "flex";
 row_5.style.justifyContent = "space-between";
 
 const ROW_5_ARR = ["Ctrl", "Win", "Alt", "", "Alt", "◄", "▼", "►", "Ctrl"];
-const ROW_5_ARR_CHAR = [17, 91, 18, 32, "AltRight", 37, 40, 39, "ControlRight"]
+const ROW_5_ARR_CHAR = [17, 91, 18, 32, "AltRight", 37, 40, 39, "v"]
 
 for (let i = 0; i < 9; i++) {
     row_5.append(createStandartKey(ROW_5_ARR[i],ROW_5_ARR_CHAR[i]));
@@ -195,10 +195,94 @@ keyboard.onmouseup = function(event) {
     }
 }
 
+const ROW_2_ARR_RUS = ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\/" , "Del"];
+const ROW_3_ARR_RUS = ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "Enter"];
+const ROW_4_ARR_RUS = ["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", "/", "▲", "Shift"]
 let keyActive;
+let lang = 0;
 document.onkeydown = function(event) {
     event.preventDefault();
     keyActive = document.getElementById(event.keyCode);
+    let value = keyActive.innerHTML;
+    if(event.keyCode === 18 && lang === 0) {
+        row_2.innerHTML = "";
+        row_3.innerHTML = "";
+        row_4.innerHTML = ""
+        for (let i = 0; i < 15; i++) {
+            row_2.append(createStandartKey(ROW_2_ARR_RUS[i], ROW_2_ARR_CHAR[i]));
+        }
+        row_2.firstElementChild.style.width = "50px";
+        row_2.firstElementChild.style.backgroundColor = "black";
+        row_2.lastElementChild.style.backgroundColor = "black";
+        row_2.lastElementChild.style.width = "44px";
+        row_2.firstElementChild.classList.add("black");
+        row_2.lastElementChild.classList.add("black");
+        for (let i = 0; i < 13; i++) {
+            row_3.append(createStandartKey(ROW_3_ARR_RUS[i], ROW_3_ARR_CHAR[i]));
+        }
+        
+        row_3.firstElementChild.style.width = "100px";
+        row_3.firstElementChild.style.backgroundColor = "black";
+        row_3.lastElementChild.style.backgroundColor = "black";
+        row_3.lastElementChild.style.width = "86px";
+        row_3.firstElementChild.classList.add("black");
+        row_3.lastElementChild.classList.add("black");
+        for (let i = 0; i < 13; i++) {
+            row_4.append(createStandartKey(ROW_4_ARR_RUS[i],ROW_4_ARR_CHAR[i]));
+        }
+        
+        row_4.firstElementChild.style.width = "100px";
+        row_4.firstElementChild.style.backgroundColor = "black";
+        row_4.lastElementChild.style.backgroundColor = "black";
+        row_4.lastElementChild.previousElementSibling.style.backgroundColor = "black";
+        row_4.lastElementChild.previousElementSibling.classList.add("black");
+        row_4.firstElementChild.style.backgroundColor = "black";
+        row_4.lastElementChild.classList.add("black");
+        row_4.firstElementChild.classList.add("black");
+        row_4.lastElementChild.style.width = "86px";
+
+        lang = 1;
+    }
+    else if(event.keyCode === 18 && lang === 1) {
+        row_2.innerHTML = "";
+        row_3.innerHTML = "";
+        row_4.innerHTML = ""
+        for (let i = 0; i < 15; i++) {
+            row_2.append(createStandartKey(ROW_2_ARR[i], ROW_2_ARR_CHAR[i]));
+        }
+        row_2.firstElementChild.style.width = "50px";
+        row_2.firstElementChild.style.backgroundColor = "black";
+        row_2.lastElementChild.style.backgroundColor = "black";
+        row_2.lastElementChild.style.width = "44px";
+        row_2.firstElementChild.classList.add("black");
+        row_2.lastElementChild.classList.add("black");
+        for (let i = 0; i < 13; i++) {
+            row_3.append(createStandartKey(ROW_3_ARR[i], ROW_3_ARR_CHAR[i]));
+        }
+        
+        row_3.firstElementChild.style.width = "100px";
+        row_3.firstElementChild.style.backgroundColor = "black";
+        row_3.lastElementChild.style.backgroundColor = "black";
+        row_3.lastElementChild.style.width = "86px";
+        row_3.firstElementChild.classList.add("black");
+        row_3.lastElementChild.classList.add("black");
+        for (let i = 0; i < 13; i++) {
+            row_4.append(createStandartKey(ROW_4_ARR[i],ROW_4_ARR_CHAR[i]));
+        }
+        
+        row_4.firstElementChild.style.width = "100px";
+        row_4.firstElementChild.style.backgroundColor = "black";
+        row_4.lastElementChild.style.backgroundColor = "black";
+        row_4.lastElementChild.previousElementSibling.style.backgroundColor = "black";
+        row_4.lastElementChild.previousElementSibling.classList.add("black");
+        row_4.firstElementChild.style.backgroundColor = "black";
+        row_4.lastElementChild.classList.add("black");
+        row_4.firstElementChild.classList.add("black");
+        row_4.lastElementChild.style.width = "86px";
+
+        lang = 0;
+    }
+
     if (event.code === "ShiftRight") {
         keyActive = document.getElementById("ShiftRight");
     }
@@ -208,7 +292,6 @@ document.onkeydown = function(event) {
     if (event.code === "AltRight") {
         keyActive = document.getElementById("AltRight");
     }
-    let value = keyActive.innerHTML;
     if (value === "Backscape") {
         textarea.value = textarea.value.slice(0, textarea.value.length - 1);
     }
@@ -228,6 +311,11 @@ document.onkeyup = function(event) {
         keyActive.style.borderRadius = "5px";
     }
 };
+
+
+
+
+
 
 
 
