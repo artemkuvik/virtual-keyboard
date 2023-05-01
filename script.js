@@ -1,5 +1,6 @@
 let wrapper = document.createElement("div");
 document.body.append(wrapper);
+localStorage.setItem("lang") == 1;
 
 let title = document.createElement("div");
 wrapper.prepend(title);
