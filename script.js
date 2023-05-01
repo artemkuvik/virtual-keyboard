@@ -311,7 +311,10 @@ document.onkeydown = function(event) {
     if (value === "Backscape") {
         textarea.value = textarea.value.slice(0, textarea.value.length - 1);
     }
-    else textarea.value = textarea.value + value;
+    else if(event.keyCode !== 18 && event.keyCode !== 17
+        && event.keyCode !== 91 && event.keyCode !== 16
+        && event.keyCode !== 20 && event.keyCode !== 13
+        && event.keyCode !== 46 && event.keyCode !== 9) textarea.value = textarea.value + value;
     keyActive.style.backgroundColor = "#1d8220";
     keyActive.style.borderRadius = "50%";
 };
