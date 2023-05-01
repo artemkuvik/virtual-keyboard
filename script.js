@@ -242,8 +242,8 @@ document.onkeydown = function(event) {
         row_4.lastElementChild.style.width = "86px";
 
         lang = 1;
-    }
-    else if(event.keyCode === 18 && lang === 1) {
+        }
+        else if(event.keyCode === 18 && lang === 1) {
         row_2.innerHTML = "";
         row_3.innerHTML = "";
         row_4.innerHTML = ""
@@ -311,6 +311,15 @@ document.onkeyup = function(event) {
         keyActive.style.borderRadius = "5px";
     }
 };
+
+let subTitle = document.createElement('div');
+subTitle.innerHTML = "Для смены языка нажмите Alt";
+subTitle.style.marginTop = "15px";
+subTitle.style.textAlign = "center";
+subTitle.style.fontSize = "25px";
+subTitle.style.color = "#8B4513";
+document.body.append(subTitle);
+
 
 
 
